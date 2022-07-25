@@ -3,7 +3,7 @@ import { Route } from "react-router-dom";
 import { useState } from "react";
 import { userLogin } from "../api";
 
-const Login = () => {
+const login = () => {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
 
@@ -51,4 +51,4 @@ const Login = () => {
   );
 };
 
-export default Login;
+export default login;

@@ -1,14 +1,26 @@
 import React from "react";
-import { Routes, Route, Navigate } from "react-router-dom";
+import { Routes, Route, Navigate, BrowserRouter } from "react-router-dom";
 import Nav from "./components/Nav";
 import { useState, useEffect } from "react";
 import Posts from "./components/Posts";
 import Profile from "./components/Profile";
-import Login from "./components/login";
+import login from "./components/login";
 import Signup from "./components/Signup";
+import { fetchPosts } from "./api";
 
 function App() {
   const [token, setToken] = useState(null);
+
+  const [originalposts, setoriginalposts] = useState([]);
+
+  useEffect(() => {
+    const getPosts = async () => {
+      const result = await fetchPosts();
+      setoriginalposts(result);
+      console.log("These are the posts from API:", result);
+    };
+    getPosts();
+  }, []);
 
   useEffect(() => {
     const localStorageToken = localStorage.getItem("token");
@@ -20,23 +32,35 @@ function App() {
 
   return (
     <div>
-      <Nav />
-      <Routes>
-        <Route exact path="/Login">
-          {token ? <Navigate to="/Profile" /> : <Login />}
-        </Route>
-        <Route path="/Posts">
-          <Posts />
-        </Route>
-        <Route path="/Profile">
-          {!token ? <Navigate to="Login" /> : <Profile />}
-        </Route>
-        <Route path="/Signup">
-          <Signup setToken={setToken} />
-        </Route>
-      </Routes>
+      <BrowserRouter>
+        <Nav />
+        <Routes>
+          <Route
+            path="/"
+            element={
+              <Posts
+                setoriginalposts={setoriginalposts}
+                originalposts={originalposts}
+              />
+            }
+          />
+          <Route
+            path="/Posts"
+            element={
+              <Posts
+                setoriginalposts={setoriginalposts}
+                originalposts={originalposts}
+              />
+            }
+          />
+          <Route path="/Signup" element={<Signup />} />
+        </Routes>
+      </BrowserRouter>
     </div>
   );
 }
 
 export default App;
+
+// {token ? <Navigate to="/Profile" /> : <login />}
+// {!token ? <Navigate to="login" /> : <Profile />}
