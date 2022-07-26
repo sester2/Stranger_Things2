@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { fetchPosts } from "../api/index.js";
-import NewPost from "./NewPost.jsx";
+import {NewPost} from "./NewPost.jsx";
 
 const Posts = (props) => {
   // const [originalposts, setoriginalposts] = useState([" "]);

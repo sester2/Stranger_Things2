@@ -3,8 +3,8 @@ import { Routes, Route, Navigate, BrowserRouter } from "react-router-dom";
 import Nav from "./components/Nav";
 import { useState, useEffect } from "react";
 import Posts from "./components/Posts";
-import Profile from "./components/Profile";
-import login from "./components/login";
+// import Profile from "./components/Profile";
+// import login from "./components/login";
 import Signup from "./components/Signup";
 import { fetchPosts } from "./api";
 
@@ -53,6 +53,7 @@ function App() {
               />
             }
           />
+          
           <Route path="/Signup" element={<Signup />} />
         </Routes>
       </BrowserRouter>

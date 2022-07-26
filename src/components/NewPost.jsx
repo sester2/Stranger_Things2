@@ -1,5 +1,7 @@
 import { useState, useEffect } from "react";
+import { Route } from "router";
 import { createPost } from "../api";
+import {Profile} from "./Profile";
 
 const NewPost = () => {
   const [newPost, setNewPost] = useState("");
@@ -32,6 +34,8 @@ const NewPost = () => {
   }, []);
 
   return (
+    
+    
     <div className="newPost">
       <form onSubmit={handleSubmit}>
         <input type="text" onChange={handleChange} placeholder="title"></input>

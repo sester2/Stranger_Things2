@@ -1,6 +1,9 @@
 import React from "react";
 import { useEffect, useState } from "react";
 import { fetchUserPosts } from "../api";
+import {NewPost}from "./NewPost";
+
+//I would like user to have access to see all the posts they have made 
 
 const Profile = () => {
   const [posts, setPosts] = useState([]);
@@ -10,11 +13,15 @@ const Profile = () => {
       const newToken = localStorage.getItem("token");
 
       const result = await fetchUserPosts(newToken);
+      console.log("This is the newToken: ", newToken);
 
       setPosts(result);
+      console.log("These are the fetchuserposts:", result);
     };
     getPosts();
   });
+
+  // I envisioned having the option of seeing the new-posts information that you made
   return (
     <div>
       <button></button>
